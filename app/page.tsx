@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import type { User } from '@prisma/client'
+// import type { User } from '@prisma/client'
 
 // Server Action to add a user quickly for testing
 async function addUser(formData: FormData) {
