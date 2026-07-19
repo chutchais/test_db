@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import type { User } from '@prisma/client'
 
 // Server Action to add a user quickly for testing
 async function addUser(formData: FormData) {
@@ -15,7 +16,7 @@ async function addUser(formData: FormData) {
 
 export default async function Home() {
   // Fetch users directly inside the Server Component
-  const users = await prisma.user.findMany({
+  const users: User[] = await prisma.user.findMany({
     orderBy: { createdAt: 'desc' },
   })
 
