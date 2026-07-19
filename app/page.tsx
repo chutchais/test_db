@@ -1,5 +1,4 @@
 import { prisma } from '@/lib/prisma'
-// import type { User } from '@prisma/client'
 
 // Server Action to add a user quickly for testing
 async function addUser(formData: FormData) {
@@ -16,7 +15,7 @@ async function addUser(formData: FormData) {
 
 export default async function Home() {
   // Fetch users directly inside the Server Component
-  const users: User[] = await prisma.user.findMany({
+  const users = await prisma.user.findMany({
     orderBy: { createdAt: 'desc' },
   })
 
@@ -40,7 +39,7 @@ export default async function Home() {
           <p className="text-gray-500">No users found.</p>
         ) : (
           <ul className="divide-y border rounded p-4">
-            {users.map((user) => (
+            {users.map((user: { id: string; name: string | null; email: string }) => (
               <li key={user.id} className="py-2 flex justify-between">
                 <span>{user.name || 'No Name'}</span>
                 <span className="text-gray-400">{user.email}</span>
